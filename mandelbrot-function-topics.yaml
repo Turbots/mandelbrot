@@ -1,0 +1,6 @@
+apiVersion : projectriff.io/v1
+kind: Topic
+metadata:	
+  name: mandelbrot-input
+spec:
+  partitions: 1
