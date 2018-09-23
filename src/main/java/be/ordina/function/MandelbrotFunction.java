@@ -3,20 +3,30 @@ package be.ordina.function;
 import java.util.function.Function;
 
 @SuppressWarnings("unused")
-public class MandelbrotFunction implements Function<MandelbrotInput, Integer> {
+public class MandelbrotFunction implements Function<String, Integer> {
 
-	public Integer apply(MandelbrotInput input) {
-		Complex z = Complex.builder()
-			.imaginary(input.getComplex().getImaginary())
-			.real(input.getComplex().getReal())
-			.build();
+	public Integer apply(String input) {
+		Complex complex;
+		Integer max;
 
-		for (int t = 0; t < input.getMax(); t++) {
-			if (z.abs() > 2.0)
-				return t;
-			z = z.times(z).plus(input.getComplex());
+		try {
+			complex = new Complex(
+				Double.parseDouble(input.substring(0, input.indexOf(','))),
+				Double.parseDouble(input.substring(input.indexOf(','), input.lastIndexOf(','))));
+
+			max = Integer.parseInt(input.substring(input.lastIndexOf(',')));
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Wrong format: use `<real>,<imaginary>,<max>`");
 		}
 
-		return input.getMax();
+		Complex z = new Complex(complex);
+
+		for (int t = 0; t < max; t++) {
+			if (z.abs() > 2.0)
+				return t;
+			z = z.times(z).plus(complex);
+		}
+
+		return max;
 	}
 }
