@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Calculation {
+public class ColoredPixel {
 
-	private double real;
-	private double imaginary;
-	private int x, y;
-	private int max;
+	private int x,y;
+	private int color;
 }
