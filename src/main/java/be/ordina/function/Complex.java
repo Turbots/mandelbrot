@@ -1,8 +1,6 @@
 package be.ordina.function;
 
-import lombok.Getter;
-
-@Getter class Complex {
+class Complex {
 
 	private final double real;
 	private final double imaginary;
@@ -32,5 +30,13 @@ import lombok.Getter;
 		double real = a.real * b.real - a.imaginary * b.imaginary;
 		double imag = a.real * b.imaginary + a.imaginary * b.real;
 		return new Complex(real, imag);
+	}
+
+	public double getReal() {
+		return real;
+	}
+
+	public double getImaginary() {
+		return imaginary;
 	}
 }
